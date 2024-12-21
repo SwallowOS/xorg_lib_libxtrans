@@ -1233,9 +1233,9 @@ TRANS(MakeAllCOTSServerListeners) (const char *port, int *partial,
 	    continue;
 	}
 #if defined(IPv6) && defined(AF_INET6)
-		if ((Xtransports[i].transport_id == TRANS_SOCKET_INET_INDEX
-		     && ipv6_succ))
-		    flags |= ADDR_IN_USE_ALLOWED;
+	//	if ((Xtransports[i].transport_id == TRANS_SOCKET_INET_INDEX
+	//	     && ipv6_succ))
+	//	    flags |= ADDR_IN_USE_ALLOWED;
 #endif
 
 	if ((status = TRANS(CreateListener (ciptr, port, flags))) < 0)

@@ -640,7 +640,7 @@ TRANS(SocketOpenCOTSServer) (Xtransport *thistrans, const char *protocol,
      * Using this prevents the bind() check for an existing server listening
      * on the same port, but it is required for other reasons.
      */
-#ifdef SO_REUSEADDR
+#if 1 //#ifdef SO_REUSEADDR
 
     /*
      * SO_REUSEADDR only applied to AF_INET && AF_INET6
@@ -654,6 +654,8 @@ TRANS(SocketOpenCOTSServer) (Xtransport *thistrans, const char *protocol,
     {
 	int one = 1;
 	setsockopt (ciptr->fd, SOL_SOCKET, SO_REUSEADDR,
+		    (char *) &one, sizeof (int));
+	setsockopt (ciptr->fd, SOL_SOCKET, SO_REUSEPORT,
 		    (char *) &one, sizeof (int));
     }
 #endif
